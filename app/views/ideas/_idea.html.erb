@@ -15,15 +15,13 @@
 
     <%= render :partial => "ideas/form",:locals => {:idea => idea } %>
 
-    <% if user_signed_in? %> 
-      <div class="row">
-        <div class="span7 btn-toolbar" id="action-button-<%=idea.id%>">
-          <%= new_solution_button idea %>
-          <%= new_comment_button idea %>
-          <%= favor_unfavor_button idea %>
-        </div>
+    <div class="row">
+      <div class="span7 btn-toolbar" id="action-button-<%=idea.id%>">
+        <%= new_solution_button idea %>
+        <%= new_comment_button idea %>
+        <%= favor_unfavor_button idea %>
       </div>
-    <% end %>
+    </div>
 
     <% if user_signed_in? %> 
       <div class="row">

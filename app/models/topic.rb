@@ -17,7 +17,7 @@ class Topic < ActiveRecord::Base
   end
 
   def name_valid_format
-    errors.add(:name,I18n.t('app.error.topic.name_format')) if self.name.index(/[.\/]/)
+    errors.add(:name,I18n.t('app.error.topic.name_format')) if self.name && self.name.index(/[.\/]/)
   end
 
   before_save do |topic|

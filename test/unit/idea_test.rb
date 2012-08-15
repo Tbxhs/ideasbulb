@@ -49,4 +49,20 @@ class IdeaTest < ActiveSupport::TestCase
     assert @idea.invalid?
     assert @idea.errors[:tags].any?
   end
+
+  test "validate idea tags format" do
+    @idea.tag_names = "design ux feel"
+    assert @idea.valid?
+    assert @idea.errors[:tags].empty?
+    @idea.tag_names = "design u.x feel "
+    assert @idea.invalid?
+    assert @idea.errors[:tags].any?
+    @idea.tag_names = "design u/x feel "
+    assert @idea.invalid?
+    assert @idea.errors[:tags].any?
+    @idea.tag_names = "des.ign ux fe/el "
+    assert @idea.invalid?
+    assert @idea.errors[:tags].any?
+  end
+
 end

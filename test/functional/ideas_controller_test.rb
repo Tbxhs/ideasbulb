@@ -18,7 +18,8 @@ class IdeasControllerTest < ActionController::TestCase
   test "everybody get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:ideas)
+    assert_not_nil assigns(:topics)
+    assert_not_nil assigns(:tags)
   end
   
   test "everybody get search" do
@@ -195,13 +196,6 @@ class IdeasControllerTest < ActionController::TestCase
   test "everybody get tab" do
     xhr :get,:tab
     assert_response :success
-    assert_not_nil assigns(:ideas)
-  end
-
-  test "everybody get tag" do
-    get :tag,{ :tag_id => tags(:design).id}
-    assert_response :success
-    assert_not_nil assigns(:tag)
     assert_not_nil assigns(:ideas)
   end
 

@@ -78,7 +78,7 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "validate dscription" do
+  test "validate description" do
     user = users(:admin_jack)
     description = ""
     4.times do

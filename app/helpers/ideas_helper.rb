@@ -25,8 +25,12 @@ module IdeasHelper
   end
 
   def favor_unfavor_button(idea)
-    if can? :favoriate,idea
+    if user_signed_in?
       content_tag :div,idea.favorers.exists?(current_user.id)?unfavor_idea_button(idea):favor_idea_button(idea),:class=>"btn-group"
+    else
+      content_tag :div,:class=>"btn-group" do
+        link_to I18n.t("app.idea.favoriate"),"javascript:;",:class=>"login-required btn btn-success"
+      end
     end
   end
 

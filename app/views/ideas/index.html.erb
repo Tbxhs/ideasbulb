@@ -1,10 +1,6 @@
 <% title "主页 - #{Preference.option(PREFERENCE_SITE_NAME)}" %>
-<div class="row">
-  <div class="span9">
-    <%= flash_msg_tag flash[:alert],"alert-error" %>
-    <%= flash_msg_tag flash[:notice],"alert-success" %>
-  </div>
-</div>
+<%= flash_msg_tag flash[:alert],"alert-error" %>
+<%= flash_msg_tag flash[:notice],"alert-success" %>
 <% @topics.each do |topic| %>
   <section class="section-topic">
     <div class="page-header">

@@ -22,6 +22,7 @@
 	</ul>
   </div>
 </div>
+<% if user_signed_in? %>
 <div class="row" id="edit-solution-<%=solution.id%>" style="display:none">
   <div class="span7 seperator"></div>
   <div class="span7">
@@ -36,3 +37,4 @@
 	<% end %>
   </div>
 </div>
+<% end %>

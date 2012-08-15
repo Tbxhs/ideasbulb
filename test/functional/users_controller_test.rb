@@ -37,9 +37,10 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "everybody show user" do
-    get :show, id: @user_tom.to_param
+    get :show, id: @user_tom.username
     assert_response :success
     assert_not_nil assigns(:user)
+    assert_not_nil assigns(:ideas)
   end
 
   test "login user edit himself" do

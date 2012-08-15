@@ -10,6 +10,13 @@ class TopicsControllerTest < ActionController::TestCase
     @user_tom = users(:user_tom)
   end
 
+  test "everybody get show" do
+    get :show,{:id => @topic_website.name}
+    assert_response :success
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:ideas)
+  end
+
   test "normal user not get index" do
     sign_in @user_tom
     get :index
@@ -22,12 +29,26 @@ class TopicsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:topics)
+  end
+
+  test "normal user not new" do
+    sign_in @user_tom
+    get :new
+    assert_redirected_to root_path
+    assert_equal I18n.t('unauthorized.manage.all'),flash[:alert]
+  end
+
+  test "admin get new" do
+    sign_in @admin_jack
+    get :new
+    assert_response :success
+    assert_template :new
     assert_not_nil assigns(:topic)
   end
 
   test "normal user not create" do
     sign_in @user_tom
-    xhr :post,:create
+    post :create
     assert_redirected_to root_path
     assert_equal I18n.t('unauthorized.manage.all'),flash[:alert]
   end
@@ -35,9 +56,17 @@ class TopicsControllerTest < ActionController::TestCase
   test "admin create" do
     sign_in @admin_jack
     assert_difference('Topic.count') do
-      xhr :post,:create,:topic => { :name => 'a new topic'}
+      post :create,:topic => { :name => 'a new topic'}
     end
-    assert_response :success
+    assert_redirected_to :action => :index
+  end
+
+  test "admin create invalid" do
+    sign_in @admin_jack
+    assert_no_difference('Topic.count') do
+      post :create,:topic => { :name => 'a n.ew topic'}
+    end
+    assert_template :new
   end
 
   test "normal user not destroy" do
@@ -63,9 +92,24 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "normal user not edit" do
+    sign_in @user_tom
+    get :edit,{:id => @topic_iPhone.id}
+    assert_redirected_to root_path
+    assert_equal I18n.t('unauthorized.manage.all'),flash[:alert]
+  end
+
+  test "admin get edit" do
+    sign_in @admin_jack
+    get :edit,{:id => @topic_iPhone.id}
+    assert_response :success
+    assert_template :edit
+    assert_not_nil assigns(:topic)
+  end
+
   test "normal user not update" do
     sign_in @user_tom
-    xhr :put,:update,{:id => @topic_iPhone.id}
+    put :update,{:id => @topic_iPhone.id}
     assert_redirected_to root_path
     assert_equal I18n.t('unauthorized.manage.all'),flash[:alert]
   end
@@ -73,9 +117,16 @@ class TopicsControllerTest < ActionController::TestCase
   test "admin update" do
     sign_in @admin_jack
     assert_no_difference('Topic.count') do
-      xhr :put,:update,{:id => @topic_iPhone.id,:topic => {:name => "update a name"}}
+      put :update,{:id => @topic_iPhone.id,:topic => {:name => "update a name"}}
     end
-    assert_response :success
+    assert_redirected_to :action => :index
   end
 
+  test "admin update invalid" do
+    sign_in @admin_jack
+    assert_no_difference('Topic.count') do
+      put :update,{:id => @topic_iPhone.id,:topic => {:name => "upd.ate a name"}}
+    end
+    assert_template :edit
+  end
 end

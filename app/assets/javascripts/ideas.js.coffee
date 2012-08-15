@@ -106,6 +106,7 @@ initIdeas = (html) ->
  $('#ideas-pagination li:not(.disabled,.active) a').attr('data-remote','true').bind('ajax:complete',(evt, xhr, status) -> initIdeas(xhr.responseText))
  $('ul.solution-actions').tooltip selector: "a.tip-link"
  $('ul.user-info').tooltip selector: "a[rel=tooltip]"
+ $('.login-required').click -> $('#modal-login').modal('show')
 
 initIdea = (html) ->
  fillIdea(html) if html
