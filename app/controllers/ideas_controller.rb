@@ -24,7 +24,9 @@ class IdeasController < ApplicationController
 
   def promotion
     ideas=Idea.search do
-      keywords params[:query]
+      fulltext params[:query] do
+        boost_fields :title => 2.0,:description => 1.0
+      end
       paginate :per_page => 10 
     end.results
     render :json => {:query=>params[:query],:suggestions => ideas.collect{|idea| idea.title},:data => ideas.collect{|idea| idea.id} }.to_json
@@ -36,11 +38,19 @@ class IdeasController < ApplicationController
     render :layout => "list"
   end
 
+  def new
+    @idea = Idea.new
+  end
+
   def create
     @idea = Idea.new(params[:idea])
     @idea.status = IDEA_STATUS_UNDER_REVIEW 
     @idea.user = current_user
-    @idea.save
+    if @idea.save
+      redirect_to @idea
+    else
+      render :new
+    end
   end
 
   def update

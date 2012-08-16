@@ -56,8 +56,21 @@ class IdeasControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "everybody not new" do
+    get :new
+    assert_redirected_to root_path
+    assert_equal I18n.t('unauthorized.manage.all'),flash[:alert]
+  end
+
+  test "login user get new" do
+    sign_in @user_tom
+    get :new
+    assert_response :success
+    assert_template :new
+  end
+
   test "everybody not create" do
-    xhr :post,:create
+    post :create
     assert_redirected_to root_path
     assert_equal I18n.t('unauthorized.manage.all'),flash[:alert]
   end
@@ -66,27 +79,28 @@ class IdeasControllerTest < ActionController::TestCase
     sign_in @user_tom
     @user_tom_under_review.tag_names = ""
     assert_difference('Idea.count') do
-      xhr :post,:create,{idea: @user_tom_under_review.attributes}
+      post :create,{idea: @user_tom_under_review.attributes}
     end
-    assert_response :success
+    assert_redirected_to assigns[:idea]
   end
 
   test "login user create valid idea with tag" do
     sign_in @user_tom
     @user_tom_under_review.tag_names = "test good"
     assert_difference('Idea.count') do
-      xhr :post,:create,{idea: @user_tom_under_review.attributes}
+      post :create,{idea: @user_tom_under_review.attributes}
     end
-    assert_response :success
+    assert_redirected_to assigns[:idea]
   end
 
   test "login user create invalid idea" do
     sign_in @user_tom
     @user_tom_under_review.title = nil
     assert_no_difference('Idea.count') do
-      xhr :post,:create,{idea: @user_tom_under_review.attributes}
+      post :create,{idea: @user_tom_under_review.attributes}
     end
     assert assigns(:idea).errors.any?
+    assert_template :new
   end
 
   test "everybody not update idea" do

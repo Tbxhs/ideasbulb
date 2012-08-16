@@ -16,7 +16,13 @@
 		    <div class="home-idea-entry"><%= auto_link(idea.description) %></div>
           <% else %>
             <p><span class="label label-warning">还有没有主意！</span></p>
-			<p>如果你有什么好主意，赶紧<a href="javascript:;" data-toggle="modal" data-target="#modal-add-idea">发布</a>吧。</p>
+			<p>如果你有什么好主意，赶紧
+              <% if user_signed_in? %>
+                <%= link_to '发布',new_idea_path %>
+              <% else %>
+                <a href="javascript:;" data-toggle="modal" data-target="#modal-login">发布</a>
+              <% end %>
+            吧。</p>
           <% end %>
 	    </div>
       <% end %>

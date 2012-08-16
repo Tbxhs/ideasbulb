@@ -2,22 +2,15 @@
   <div class="navbar-inner">
     <div class="container">
       <%= link_to Preference.option(PREFERENCE_SITE_NAME),root_path,:class=>"brand" %>
-      <% if user_signed_in? %>
-	    <form action="#" class="navbar-form pull-left">
-		  <input type="text" placeholder="输入你的好主意" id="nav-idea-title-input">
-          <button data-toggle="modal" data-target="#modal-add-idea" class="btn" type="submit">发布</button>
-		</form>
-      <% end %>
       <ul class="nav">
         <li class="active"><%= link_to "网站主页",root_path %></li>
         <% if can? :dashboard,Preference %>
           <li><%= link_to "控制面板",dashboard_preferences_path,:id => "dashboard" %></li>
         <% end %>
       </ul>
-      <ul class="nav pull-right">
-        <% if user_signed_in? %>
+      <% if user_signed_in? %>
+        <ul class="nav pull-right">
           <li id="inbox"><a href="javascript:;" rel="popover" data-original-title="<a href='/users/inbox'>查看全部</a>" data-content="<table class='table' style='width:100%'><% current_user.messages.where(:readed => false).order('created_at DESC').each do |message|%><tr><td><a href='/messages/<%= message.id %>' class='message'><%= message.content %><span class='shallow' style='float:right'><%= distance_of_time_in_words_to_now message.created_at %></span></a></td></tr><% end %></table>" data-placement="bottom" data-trigger="manual"><span class="label label-important" style="display:inline-block;width:18px;height:18px;text-align:center;font-size:14px;line-height:18px"><%= current_user.messages.where(:readed => false).count %></span></a></li>
-
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %><b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -27,42 +20,22 @@
               <li><%= link_to "注销",destroy_user_session_path,:method => :delete %></li>
             </ul>
           </li>
-        <% else %>
+        </ul>
+        <div class="btn-group pull-right">
+          <%= link_to new_idea_path,:class=>"btn btn-warning" do %><i class="icon-bullhorn icon-white"></i>&nbsp;发布新主意<% end %>
+        </div>
+      <% else %>
+        <ul class="nav pull-right">
           <li><%= link_to "登录", new_session_path(User) %></li>
           <li><%= link_to "注册", new_registration_path(User) %></li>
-        <% end %>
+        </ul>
+        <div class="btn-group pull-right">
+          <a href="javascript:;" data-toggle="modal" data-target="#modal-login" class="btn btn-warning"><i class="icon-bullhorn icon-white"></i>&nbsp;发布新主意</a>
+        </div>
+      <% end %>
       </ul>
     </div>
   </div>
-</div>
-
-<div class="modal hide fade in" id="modal-add-idea">
-  <%= form_for(Idea.new,:remote => true,:html=>{:style=>"margin:0"}) do |f| %>
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
-    <h3>发布主意</h3>
-  </div>
-  <div class="modal-body" id="modal-body-add-idea">
-    <div class="row">
-      <div class="span5 offset1">
-	    <%= f.label :title %>
-        <%= f.text_field :title, :class => "span5", :id => "add-idea-title-input" %>
-	    <%= f.label :description %>
-	    <%= f.text_area :description,:class=>"span5",:style => "height:100px;overflow-y:auto" %>
-        <p class="help-block"><%= t('app.info.content_tip')%></p>
-	    <%= f.label :tag_names %>
-        <%= f.text_field :tag_names, :class => "span3" %>
-        <span class="help-inline">空格间隔，最多3个</span>
-	    <%= f.label :topic %>
-        <%= collection_select(:idea, :topic_id, Topic.all, :id, :name) %>
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <a href="javascript:;" class="btn" data-dismiss="modal">关闭</a>
-    <%= f.submit "发布",:class => "btn btn-primary",:disable_with => "发布中..." %>
-  </div>
-  <% end %>
 </div>
 
 <div class="modal hide fade in" id="modal-login">
