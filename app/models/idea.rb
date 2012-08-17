@@ -42,7 +42,7 @@ class Idea < ActiveRecord::Base
 
   def tag_names=(names)
     self.tmp_tag_ids = self.tags.collect{|tag| tag.id}
-    self.tags = Tag.with_names(names.split(/\s+/))
+    self.tags = Tag.with_names(names.strip.split(/\s+/))
     self.tags.each do |tag|
       self.tmp_tag_ids << tag.id unless self.tmp_tag_ids.include?(tag.id)
     end

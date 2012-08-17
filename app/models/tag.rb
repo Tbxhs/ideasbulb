@@ -13,4 +13,8 @@ class Tag < ActiveRecord::Base
     WHERE `id` in (#{tag_ids.join(',')})") if tag_ids && !tag_ids.empty?
   end
 
+  def self.random(limit)
+    tag_ids = Tag.find( :all, :select => 'id' ).map( &:id )
+    tags = Tag.find((1..limit).map{tag_ids.delete_at(tag_ids.size*rand)})
+  end
 end

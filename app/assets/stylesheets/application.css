@@ -37,9 +37,6 @@ body {
 .field_with_errors{
   display: inline;
 }
-.label{
-  font-size:13px;
-}
 img.profile_picture_medium {
   width: 120px;
   height: 120px;

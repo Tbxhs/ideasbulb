@@ -118,8 +118,14 @@ initIdea = (html) ->
  $('ul.solution-actions').tooltip selector: "a.tip-link"
  $('ul.user-info').tooltip selector: "a[rel=tooltip]"
 
+appendTag = (target,source) ->
+ tag=$(source).text()
+ input=$(target)
+ input.val(input.val()+" "+tag)
+
 jQuery ($) ->
  $("a[rel=popover]").popover({template:'<div class="popover"><div class="arrow"></div><div class="popover-inner" style="width:400px"><h3 class="popover-title" style="font-size:13px;text-align:right"></h3><div class="popover-content" style="font-size:13px;"><p></p></div></div></div>'}).click -> $(this).popover('toggle')
  initIdeas() if $('#ideas-main').length > 0
  initIdea() if $('#idea-main').length > 0
  $('#idea-title-promotion').autocomplete({serviceUrl:'/ideas/promotion',width:400,onSelect :(value, data) -> location.href="/ideas/"+data })
+ $('a.btn-tag').click -> appendTag("#idea_tag_names",this)
