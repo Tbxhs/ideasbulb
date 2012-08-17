@@ -117,6 +117,7 @@ initIdea = (html) ->
  $('.edit-solution-link').click -> showEditForm('solution',this)
  $('ul.solution-actions').tooltip selector: "a.tip-link"
  $('ul.user-info').tooltip selector: "a[rel=tooltip]"
+ $('.login-required').click -> $('#modal-login').modal('show')
 
 appendTag = (target,source) ->
  tag=$(source).text()
