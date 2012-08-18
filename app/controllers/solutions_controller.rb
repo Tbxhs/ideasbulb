@@ -2,8 +2,7 @@ class SolutionsController < ApplicationController
   authorize_resource
 
   def create
-    @solution = Solution.new(params[:solution])
-    @solution.user = current_user
+    @solution = current_user.solutions.build(params[:solution])
     @idea_id = params[:idea_id] 
     @solution.idea = Idea.find(@idea_id)
     @solution.save

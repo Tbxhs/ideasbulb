@@ -43,9 +43,8 @@ class IdeasController < ApplicationController
   end
 
   def create
-    @idea = Idea.new(params[:idea])
+    @idea = current_user.ideas.build(params[:idea])
     @idea.status = IDEA_STATUS_UNDER_REVIEW 
-    @idea.user = current_user
     if @idea.save
       redirect_to @idea
     else
@@ -74,7 +73,7 @@ class IdeasController < ApplicationController
     end
     if !flash[:alert]
       @idea.is_handle = true
-      @idea.update_attributes(:status => params[:status])
+      @idea.update_attribute(:status,params[:status])
     end
     redirect_to @idea 
   end
@@ -132,7 +131,7 @@ class IdeasController < ApplicationController
   private
   def check_status(status)
     if params[:status] != status
-        flash[:alert] = I18n.t('app.error.idea.status',:status => I18n.t("app.idea.status.#{status}"))
+      flash[:alert] = I18n.t('app.error.idea.status',:status => I18n.t("app.idea.status.#{status}"))
     end
   end
 

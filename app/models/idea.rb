@@ -1,4 +1,6 @@
 class Idea < ActiveRecord::Base
+  attr_accessible :title,:description,:tag_names,:topic_id
+
   has_and_belongs_to_many :tags
   belongs_to :user
   belongs_to :topic
@@ -12,8 +14,10 @@ class Idea < ActiveRecord::Base
   attr_accessor :is_handle
   attr_accessor :tmp_tag_ids
 
-  validates :title,:presence =>true,:length => {:maximum => 60}
-  validates :description,:presence =>true,:length => {:maximum => 2000}
+  validates :title,:presence=>true,:length => {:maximum => 60}
+  validates :description,:presence=>true,:length => {:maximum => 2000}
+  validates :topic_id,:presence=>true
+  validates :user_id,:presence=>true
   validate :tags_valid_format,:tags_number_not_greater_than_three
 
   after_create do |idea|
@@ -58,7 +62,7 @@ class Idea < ActiveRecord::Base
         errors.add(:tags,I18n.t('app.error.idea.tags_format'))
         break
       end
-    end    
+    end
   end
 
   def tags_number_not_greater_than_three

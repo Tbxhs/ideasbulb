@@ -2,6 +2,9 @@ class Vote < ActiveRecord::Base
   belongs_to :user
   belongs_to :solution
 
+  validates :solution_id,:presence=>true
+  validates :user_id,:presence=>true
+
   before_save do |vote|
     check_status(vote.solution.idea.status,'app.error.vote.voting')
   end

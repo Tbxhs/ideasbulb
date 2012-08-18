@@ -19,7 +19,7 @@ module SolutionsHelper
     idea = solution.idea
     if (can? :destroy,solution) && current_user.id == solution.user.id && idea.status != IDEA_STATUS_LAUNCHED
       content_tag :li,link_to(I18n.t("app.solution.del"),solution,:method => :delete,:remote => true,"data-solution"=> solution.id,:id=>"del-solution-#{solution.id}")
-    end 
+    end
   end
 
   def vote_solution_link(path,method,solution_id,vote,like,login=true)
@@ -28,17 +28,17 @@ module SolutionsHelper
       link_to path,:method=> method,:remote => true,"data-original-title"=>I18n.t("app.solution.#{vote ? 'vote' : 'unvote' }.#{like ? 'like' : 'unlike' }"),"data-placement"=>"right",:class => cssClass+" tip-link" do
         content_tag :span,content_tag(:i,"",:class => (like ? "icon-thumbs-up" : "icon-thumbs-down")+" icon-white" ),:class => "label#{vote ? '' : ' label-info'}"
       end
-    end  
+    end
   end
 
   def vote_unvote_solution_link(solution)
     if solution.idea.status == IDEA_STATUS_REVIEWED_SUCCESS
-      if user_signed_in? 
+      if user_signed_in?
         vote = Vote.find_by_solution_id_and_user_id(solution,current_user)
         if vote
           if vote.like
             vote_solution_link(vote_path(vote),"delete",solution.id,false,true)+vote_solution_link(vote_path(vote,:like => false),"put",solution.id,true,false)
-          else          
+          else
             vote_solution_link(vote_path(vote,:like => true),"put",solution.id,true,true)+vote_solution_link(vote_path(vote),"delete",solution.id,false,false)
           end
         else
@@ -46,12 +46,12 @@ module SolutionsHelper
         end
       else
         vote_solution_link("javascript:;","get",solution.id,true,true,false)+vote_solution_link("javascript:;","get",solution.id,true,false,false)
-      end     
-    end 
+      end
+    end
   end
 
   def pick_solution_link(solution)
-	link_to I18n.t("app.solution.pick"),pick_solution_path(solution),:method=>:put,:remote => true,:id => "pick-link-#{solution.id}",:class=>"btn btn-success"
+    link_to I18n.t("app.solution.pick"),pick_solution_path(solution),:method=>:put,:remote => true,:id => "pick-link-#{solution.id}",:class=>"btn btn-success"
   end
 
   def unpick_solution_link(solution)

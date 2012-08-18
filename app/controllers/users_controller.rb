@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to edit_user_path(@user), :notice => I18n.t('app.notice.user.edit')
     else
-      render action:'edit'
+      render :edit
     end
   end
 

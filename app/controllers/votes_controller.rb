@@ -8,8 +8,7 @@ class VotesController < ApplicationController
 
   def update
     @vote = current_user.votes.find(params[:id])
-    @vote.like = params[:like]
-    @vote.save
+    @vote.update_attribute(:like, params[:like])
     render "create"
   end
 

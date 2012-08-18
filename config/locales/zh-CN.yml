@@ -18,6 +18,8 @@ zh-CN:
         tags: "标签"
         status: "状态"
         topic: "话题"
+        topic_id: "所属话题"
+        user_id: "创建者"
       user:
         username: "用户名"
         password: "密码"
@@ -36,15 +38,27 @@ zh-CN:
         avatar_content_type: "头像格式"
       comment:
         content: "评论"
+        user_id: "创建者"
+        idea_id: "所属主意"
       solution:
         title: "方案"
         content: "描述"
+        user_id: "创建者"
+        idea_id: "所属主意"
       topic:
         name: "话题名称"
         website: "主页"
         description: "介绍"
         logo_file_size: "Logo大小"
         logo_content_type: "Logo格式"
+      vote:
+        user_id: "投票者"
+        solution_id: "所属方案"
+      favor:
+        user_id: "关注者"
+        idea_id: "所属主意"
+      message:
+        user_id: "所属用户"
   #for application
   app:
     info:

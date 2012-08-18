@@ -3,8 +3,7 @@ class MessagesController < ApplicationController
 
   def show
     message = current_user.messages.find(params[:id])
-    message.readed = true
-    message.save
+    message.update_attribute(:readed, true)
     redirect_to message.link
   end
 end
