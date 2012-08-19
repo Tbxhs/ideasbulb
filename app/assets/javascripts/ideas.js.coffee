@@ -9,11 +9,18 @@ root.showEditIdeaForm = (target) ->
   form.prev().remove()
   $("#idea-"+closeX.data('idea')).show()
 
+root.toggleButton = (target) ->
+ btnLink = $(target)
+ if btnLink.hasClass('btn-success')
+  btnLink.text(btnLink.data('hoverin')).removeClass('btn-success').addClass('btn-danger')
+ else
+  btnLink.text(btnLink.data('hoverout')).removeClass('btn-danger').addClass('btn-success')
+
 root.insertSolution = (html,target,action,animate) ->
  solution = $(html)
  solution.find('.edit-solution-link').click -> showEditForm('solution',this)
  solution.find('ul.solution-actions').tooltip selector: "a.tip-link"
- if(action == "before" ) 
+ if(action == "before" )
   solution.insertBefore(target)
  else if(action == "after" )
   solution.insertAfter(target)
@@ -24,7 +31,7 @@ root.insertSolution = (html,target,action,animate) ->
 root.insertComment = (html,target,action,animate) ->
  comment = $(html)
  comment.find('.edit-comment-link').click -> showEditForm('comment',this)
- if(action == "before" ) 
+ if(action == "before" )
   comment.insertBefore(target)
  else if(action == "after" )
   comment.insertAfter(target)
@@ -107,6 +114,8 @@ initIdeas = (html) ->
  $('ul.solution-actions').tooltip selector: "a.tip-link"
  $('ul.user-info').tooltip selector: "a[rel=tooltip]"
  $('.login-required').click -> $('#modal-login').modal('show')
+ $('.btn-favor').hover -> toggleButton(this)
+ $('.btn-pick').hover -> toggleButton(this)
 
 initIdea = (html) ->
  fillIdea(html) if html
@@ -118,6 +127,8 @@ initIdea = (html) ->
  $('ul.solution-actions').tooltip selector: "a.tip-link"
  $('ul.user-info').tooltip selector: "a[rel=tooltip]"
  $('.login-required').click -> $('#modal-login').modal('show')
+ $('.btn-favor').hover -> toggleButton(this)
+ $('.btn-pick').hover -> toggleButton(this)
 
 appendTag = (target,source) ->
  tag=$(source).text()

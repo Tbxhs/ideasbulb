@@ -107,7 +107,9 @@ zh-CN:
         under_review: "审核通过"
         reviewed_success: "完成实施"
       favoriate: "关注动向"
-      unfavoriate: "取消关注"
+      unfavoriate:
+        hover_in: "取消关注"
+        hover_out: "关注中"
       edit: "修改"
     comment:
       new: "发布评论"
@@ -124,7 +126,9 @@ zh-CN:
         like: "取消赞成"
         unlike: "取消不赞成"
       pick: "选中"
-      unpick: "不选"
+      unpick:
+        hover_in: "不选"
+        hover_out: "已选"
     preference:
       site_name: "站点名称"
     message:

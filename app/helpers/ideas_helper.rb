@@ -17,11 +17,11 @@ module IdeasHelper
   end
 
   def unfavor_idea_button(idea)
-	link_to I18n.t("app.idea.unfavoriate"),unfavoriate_idea_path(idea),:remote => true,:id => "favor-link-#{idea.id}",:class=>"btn btn-danger"
+	link_to I18n.t("app.idea.unfavoriate.hover_out"),unfavoriate_idea_path(idea),:remote => true,:id => "favor-link-#{idea.id}",:class=>"btn btn-success btn-favor","data-hoverin" => I18n.t("app.idea.unfavoriate.hover_in"),"data-hoverout" => I18n.t("app.idea.unfavoriate.hover_out")
   end
 
   def favor_idea_button(idea)
-	link_to I18n.t("app.idea.favoriate"),favoriate_idea_path(idea),:remote => true,:id => "favor-link-#{idea.id}",:class=>"btn btn-success"
+	link_to I18n.t("app.idea.favoriate"),favoriate_idea_path(idea),:remote => true,:id => "favor-link-#{idea.id}",:class=>"btn"
   end
 
   def favor_unfavor_button(idea)
@@ -29,7 +29,7 @@ module IdeasHelper
       content_tag :div,idea.favorers.exists?(current_user.id)?unfavor_idea_button(idea):favor_idea_button(idea),:class=>"btn-group"
     else
       content_tag :div,:class=>"btn-group" do
-        link_to I18n.t("app.idea.favoriate"),"javascript:;",:class=>"login-required btn btn-success"
+        link_to I18n.t("app.idea.favoriate"),"javascript:;",:class=>"login-required btn"
       end
     end
   end

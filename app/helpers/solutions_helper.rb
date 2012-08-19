@@ -51,11 +51,11 @@ module SolutionsHelper
   end
 
   def pick_solution_link(solution)
-    link_to I18n.t("app.solution.pick"),pick_solution_path(solution),:method=>:put,:remote => true,:id => "pick-link-#{solution.id}",:class=>"btn btn-success"
+    link_to I18n.t("app.solution.pick"),pick_solution_path(solution),:method=>:put,:remote => true,:id => "pick-link-#{solution.id}",:class=>"btn"
   end
 
   def unpick_solution_link(solution)
-	link_to I18n.t("app.solution.unpick"),unpick_solution_path(solution),:method=>:put,:remote => true,:id => "unpick-link-#{solution.id}",:class=>"btn btn-danger"
+	link_to I18n.t("app.solution.unpick.hover_out"),unpick_solution_path(solution),:method=>:put,:remote => true,:id => "unpick-link-#{solution.id}",:class=>"btn btn-success btn-pick","data-hoverin" => I18n.t("app.solution.unpick.hover_in"),"data-hoverout" => I18n.t("app.solution.unpick.hover_out")
   end
 
   def pick_unpick_link(solution)
