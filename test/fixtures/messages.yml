@@ -2,3 +2,8 @@ user_tom_message:
   user: "user_tom" 
   content: hello world
   link: /ideas/tab
+
+user_tom_other_message:
+  user: "user_tom" 
+  content: goodbye world
+  link: /ideas/tab

@@ -186,3 +186,6 @@ ul.home-tags li{
  display:inline-block;
  margin:10px 5px;
 }
+td.checkbox{
+ width:18px;
+}
