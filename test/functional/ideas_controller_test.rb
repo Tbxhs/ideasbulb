@@ -81,6 +81,7 @@ class IdeasControllerTest < ActionController::TestCase
     assert_difference('Idea.count') do
       post :create,{idea: @user_tom_under_review.attributes}
     end
+    assert_equal User.find(@user_tom.id).points,@user_tom.points+USER_NEW_IDEA_POINTS
     assert_redirected_to assigns[:idea]
   end
 

@@ -20,6 +20,7 @@ class SolutionsController < ApplicationController
 
   def pick
     @solution = Solution.find(params[:id])
+    @solution.is_pick = true
     @solution.update_attribute("pick",true)
   end
 

@@ -21,6 +21,7 @@ class CommentsControllerTest < ActionController::TestCase
     assert_difference('Comment.count') do
       xhr :post,:create,{:idea_id => @user_tom_under_review.id,comment: @user_tom_comment_under_review.attributes}
     end
+    assert_equal User.find(@user_tom.id).points,@user_tom.points+USER_NEW_COMMENT_POINTS
     assert_response :success
   end
 

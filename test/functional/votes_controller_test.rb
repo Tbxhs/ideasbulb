@@ -25,6 +25,7 @@ class VotesControllerTest < ActionController::TestCase
     assert_difference('Vote.count') do
       xhr :post,:create, {:solution_id => @user_tom_solution_reviewed_success.id,:like => true}
     end
+    assert_equal User.find(@user_mick.id).points,@user_mick.points+USER_VOTE_POINTS
     assert assigns(:vote).errors.empty?
     assert_response :success
   end

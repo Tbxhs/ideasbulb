@@ -25,6 +25,7 @@ class SolutionsControllerTest < ActionController::TestCase
     assert_difference('Solution.count') do
       xhr :post,:create, {:idea_id => @user_tom_under_review.id,:solution=>{:title => "my title",:content => "my content"}}
     end
+    assert_equal User.find(@user_tom.id).points,@user_tom.points+USER_NEW_SOLUTION_POINTS
     assert assigns(:solution).errors.empty?
     assert_response :success
   end
@@ -133,6 +134,7 @@ class SolutionsControllerTest < ActionController::TestCase
   test "admin pick solution" do
     sign_in @admin_jack
     xhr :put,:pick,id: @user_tom_solution_reviewed_success.to_param
+    assert_equal User.find(@user_tom.id).points,@user_tom.points+USER_SOLUTION_PICKED_POINTS
     assert Solution.find(@user_tom_solution_reviewed_success.id).pick
     assert_response :success
   end
