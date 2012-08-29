@@ -8,6 +8,7 @@
 owner = User.create(:username => "admin",:email => "admin@example.com",:password =>"123456",:password_confirmation => "123456")
 owner.admin = true
 owner.owner = true
+owner.confirmed_at = Time.now
 owner.save
 
 Preference.create(:name => PREFERENCE_SITE_NAME,:value=> "Unknowned Site Name")
