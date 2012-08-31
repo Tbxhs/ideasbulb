@@ -50,7 +50,7 @@
             <%= f.text_field :tag_names, :class => "input-xlarge" %>
             <span class="help-inline">空格间隔，最多3个</span>
             <ul class="unstyled home-tags">
-              <% Tag.random(10).each do |tag| %>
+              <% Tag.random(Tag.count>10?10:Tag.count).each do |tag| %>
 	            <li><a href="javascript:;" class="btn btn-mini btn-info btn-tag"><%= tag.name %></a></li>
               <% end %>
             </ul>
