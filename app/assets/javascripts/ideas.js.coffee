@@ -161,3 +161,4 @@ jQuery ($) ->
  $('#message-uncheck-all').click -> toggleMessageCheckbox('#messages-table',false)
  $('#message-mark-read').click -> operateMessages('#messages-table','#message-mark-read-form')
  $('#message-delete').click -> operateMessages('#messages-table','#message-delete-form')
+ $('.dropdown-toggle').dropdown()
