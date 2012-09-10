@@ -35,6 +35,8 @@ zh-CN:
         normal: "注册用户"
         avatar_file_size: "头像大小"
         avatar_content_type: "头像格式"
+        confirmation_token: "确认帐号的认证码"
+        reset_password_token: "重置密码的认证码"
       comment:
         content: "评论"
         user_id: "创建者"
