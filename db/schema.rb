@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813031030) do
+ActiveRecord::Schema.define(:version => 20120910070853) do
+
+  create_table "applicants", :force => true do |t|
+    t.string   "site_name",   :null => false
+    t.string   "site_domain", :null => false
+    t.string   "org_name"
+    t.string   "org_website"
+    t.string   "org_intro"
+    t.integer  "status"
+    t.string   "message"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.text     "content"
