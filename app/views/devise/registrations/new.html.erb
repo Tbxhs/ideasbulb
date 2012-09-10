@@ -9,8 +9,7 @@
 	    <%= f.label :email,:class=>"control-label" %>
 	    <div class="controls">
 		  <div class="input-prepend">
-			<span class="add-on"><i class="icon-envelope"></i></span>
-            <%= f.email_field :email,:class=>"span3" %>
+			<span class="add-on"><i class="icon-envelope"></i></span><%= f.email_field :email,:class=>"span3" %>
 		  </div>
 		  <p class="help-block">填写正确的邮箱地址</p>
 		</div>
@@ -19,8 +18,7 @@
 	    <%= f.label :username,:class=>"control-label" %>
 		<div class="controls">
 		  <div class="input-prepend">
-			<span class="add-on"><i class="icon-user"></i></span>
-            <%= f.text_field :username,:class=>"span3" %>
+			<span class="add-on"><i class="icon-user"></i></span><%= f.text_field :username,:class=>"span3" %>
 		  </div>
 		  <p class="help-block">长度为3到14位，由字母和数字组成</p>
 		</div>
@@ -29,8 +27,7 @@
         <%= f.label :password,:class=>"control-label" %>
 		<div class="controls">
 		  <div class="input-prepend">
-			<span class="add-on"><i class="icon-lock"></i></span>
-            <%= f.password_field :password,:class=>"span3" %>
+			<span class="add-on"><i class="icon-lock"></i></span><%= f.password_field :password,:class=>"span3" %>
 		  </div>
 		  <p class="help-block">长度至少为6位</p>
 		</div>
@@ -39,8 +36,7 @@
         <%= f.label :password_confirmation,:class=>"control-label" %>
 		<div class="controls">
 		  <div class="input-prepend">
-			<span class="add-on"><i class="icon-lock"></i></span>
-            <%= f.password_field :password_confirmation,:class=>"span3" %>
+			<span class="add-on"><i class="icon-lock"></i></span><%= f.password_field :password_confirmation,:class=>"span3" %>
 		  </div>
 		</div>
 	  </div>
