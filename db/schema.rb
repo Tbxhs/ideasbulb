@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910070853) do
+ActiveRecord::Schema.define(:version => 20120912021035) do
 
   create_table "applicants", :force => true do |t|
     t.string   "site_name",   :null => false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20120910070853) do
     t.string   "org_name"
     t.string   "org_website"
     t.string   "org_intro"
-    t.integer  "status"
+    t.string   "status"
     t.string   "message"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20120910070853) do
     t.datetime "avatar_updated_at"
     t.string   "description"
     t.string   "website"
+    t.boolean  "root",                   :default => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

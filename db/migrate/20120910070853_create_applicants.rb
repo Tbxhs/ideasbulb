@@ -6,7 +6,7 @@ class CreateApplicants < ActiveRecord::Migration
       t.string :org_name
       t.string :org_website
       t.string :org_intro
-      t.integer :status
+      t.string :status
       t.string :message
       t.references :user
 
