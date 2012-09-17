@@ -51,7 +51,7 @@ zh-CN:
       failure: '因为%{reason}，所以您无法从%{kind}获得授权。'
     mailer:
       confirmation_instructions:
-        subject: '请完成您的注册。'
+        subject: '请验证您的邮箱地址。'
       reset_password_instructions:
         subject: '重置您的密码信息。'
       unlock_instructions:
