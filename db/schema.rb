@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912021035) do
+ActiveRecord::Schema.define(:version => 20120913030210) do
 
   create_table "applicants", :force => true do |t|
     t.string   "site_name",   :null => false
@@ -77,6 +77,21 @@ ActiveRecord::Schema.define(:version => 20120912021035) do
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "sites", :force => true do |t|
+    t.string   "name"
+    t.string   "domain"
+    t.integer  "user_id"
+    t.string   "status"
+    t.date     "due_date"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "applicant_id"
   end
 
   create_table "solutions", :force => true do |t|
