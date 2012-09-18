@@ -31,7 +31,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    if current_user.id != @user.id 
+      redirect_to root_path, :alert => I18n.t('unauthorized.manage.all')
+    elsif @user.update_attributes(params[:user])
       redirect_to edit_user_path(@user), :notice => I18n.t('app.notice.user.edit')
     else
       render :edit

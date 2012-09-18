@@ -61,6 +61,13 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
     assert_equal I18n.t('unauthorized.manage.all'),flash[:alert]
   end
+
+  test "login user not update other" do
+    sign_in @user_tom
+    put :update,{id: @admin_jack.to_param,:user => {:description => "a test description",:website => "http://www.danthought.com" }}
+    assert_redirected_to root_path
+    assert_equal I18n.t('unauthorized.manage.all'),flash[:alert]
+  end
   
   test "login user update himself" do
     sign_in @user_tom
