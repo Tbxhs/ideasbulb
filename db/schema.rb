@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120913030210) do
+ActiveRecord::Schema.define(:version => 20120918023238) do
+
+  create_table "admins", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admins", ["user_id", "site_id"], :name => "index_admins_on_user_id_and_site_id", :unique => true
 
   create_table "applicants", :force => true do |t|
     t.string   "site_name",   :null => false
@@ -151,7 +160,6 @@ ActiveRecord::Schema.define(:version => 20120913030210) do
     t.datetime "avatar_updated_at"
     t.string   "description"
     t.string   "website"
-    t.boolean  "root",                   :default => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
