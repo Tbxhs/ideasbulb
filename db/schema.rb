@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918074215) do
+ActiveRecord::Schema.define(:version => 20120919060633) do
 
   create_table "admins", :force => true do |t|
     t.integer  "user_id"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20120918074215) do
     t.integer  "topic_id"
     t.integer  "solutions_count",  :default => 0
     t.integer  "solutions_points", :default => 0
+    t.integer  "site_id"
   end
 
   create_table "ideas_tags", :id => false, :force => true do |t|
