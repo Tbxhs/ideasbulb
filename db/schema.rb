@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918023238) do
+ActiveRecord::Schema.define(:version => 20120918074215) do
 
   create_table "admins", :force => true do |t|
     t.integer  "user_id"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20120918023238) do
     t.datetime "logo_updated_at"
     t.string   "website"
     t.string   "description"
+    t.integer  "site_id"
   end
 
   create_table "users", :force => true do |t|
