@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :check_site
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
@@ -10,10 +11,15 @@ class ApplicationController < ActionController::Base
       super
     else
        request.referer || root_path
-    end  
+    end
   end
 
   def hot_sort
     "(2*`solutions_count`+`comments_count`+`solutions_points`)/POW(TIMESTAMPDIFF(HOUR,`ideas`.`created_at`,NOW())+2,1.5) DESC" 
+  end
+
+  private
+  def check_site
+    @site = Site.find_by_domain!(params[:subdomain])
   end
 end

@@ -2,7 +2,7 @@ class IdeasController < ApplicationController
   authorize_resource
 
   def index
-    @topics = Topic.all
+    @topics = @site.topics
     @tags = Tag.where("ideas_count>0").order("ideas_count desc") 
   end
 
