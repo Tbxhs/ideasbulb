@@ -38,6 +38,9 @@ gem 'capistrano'
 # Capistrano RVM Plugin
 gem 'rvm-capistrano'
 
+group :production do
+  gem 'passenger'
+end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
