@@ -1,19 +1,19 @@
-require "rvm/capistrano"  # Load RVM's capistrano plugin.
-require "bundler/capistrano" # Bundler will be activated after each new deployment
+require "rvm/capistrano"  # Load RVM's capistrano plugin. https://rvm.io/integration/capistrano/
+require "bundler/capistrano" # Bundler will be activated after each new deployment. http://gembundler.com/deploying.html
 
-default_run_options[:pty] = true # For sudo
+default_run_options[:pty] = true # Must be set for the password prompt
 
 set :use_sudo, false
 
-set :application, "danthought.ideasbulb.com" # Set Application Name
-set :repository,  "git://github.com/danjiang/ideasbulb.git" # Set Source Code Repository
+set :application, "ideasbulb" # Set Application Name
+set :repository,  "git@bitbucket.org:danjiang/ideasbulb.git" # Set Source Code Repository
 set :scm, :git # Set SCM
 
-set :deploy_to, "/var/www/danthought.ideasbulb.com" # Deployed Server Directory
+set :deploy_to, "/var/www/ideasbulb" # Deployed Server Directory
 
-role :app, application # Set Application Server Address
-role :web, application # Set Web Server Address
-role :db,  application, :primary => true # Set Database Server Address
+role :app, "www.ideasbulb.com" # Set Application Server Address
+role :web, "www.ideasbulb.com" # Set Web Server Address
+role :db,  "www.ideasbulb.com", :primary => true # Set Database Server Address
 
 set :rvm_type, :system  # Copy the exact line. I really mean :system here
 set :rvm_ruby_string, 'ruby-1.9.2-p290@ideasbulb' # Set RVM Env You Want App To Run In
@@ -21,12 +21,12 @@ set :rvm_ruby_string, 'ruby-1.9.2-p290@ideasbulb' # Set RVM Env You Want App To 
 namespace :foreman do
   desc "Start the application services"
   task :start, :roles => :app do
-    sudo "#{sudo} start #{application}"
+    run "#{sudo} start #{application}"
   end
 
   desc "Stop the application services"
   task :stop, :roles => :app do
-    sudo "#{sudo} stop #{application}"
+    run "#{sudo} stop #{application}"
   end
 
   desc "Restart the application services"
@@ -41,7 +41,7 @@ namespace :foreman do
 
   desc "Export the Procfile to upstart scripts"
   task :export, :roles => :app do
-    sudo "whoami"
+    run "#{sudo} whoami" # remember sudo password,later run rvmsudo without password
     run "cd #{current_path} && rvmsudo bundle exec foreman export upstart /etc/init -a #{application} -l #{shared_path}/log -u root -f #{current_path}/Procfile.production -c worker=2"
   end 
 end
@@ -49,13 +49,13 @@ end
 namespace :deploy do
 
   desc "Symlink extra configs and folders."
-  task :symlink_extras do
+  task :symlink_extras, :roles => :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
   end
 
-  desc "Setup shared directory."
-  task :setup_shared do
+  desc "Setup shared directory.Upload config examples`s files"
+  task :setup_shared, :roles => :app  do
     run "mkdir -p #{shared_path}/config"
     # Read Local File and Upload
     put File.read("config/examples/database.yml"), "#{shared_path}/config/database.yml"
@@ -69,8 +69,10 @@ namespace :deploy do
 
 end
 
+# Following tasks will be triggered after cap deploy:setup
 # $ cap deploy:setup -S skip_setup_shared=true
 after "deploy:setup", "deploy:setup_shared" unless fetch(:skip_setup_shared, false)
-after "deploy:setup", "foreman:export"
-before "deploy:assets:precompile", "deploy:symlink_extras"
+# Following tasks will be triggered after cap deploy:update_code
+after "deploy:update_code", "deploy:symlink_extras"
 after "deploy:update_code", "deploy:migrate"
+#after "deploy:update_code", "foreman:restart"
