@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
   has_many :ideas
-  has_attached_file :logo, :styles => { :medium => "120x120#", :small => "50x50#"},:url => "/system/:attachment/:id/:style/:filename",:whiny => false
+  has_attached_file :logo, :styles => { :medium => "120x120#", :small => "50x50#"}
 
   validates :name,:presence =>true,:length => {:maximum => 30}
   validate :name_valid_format

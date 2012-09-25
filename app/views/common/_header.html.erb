@@ -1,13 +1,10 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to Preference.option(PREFERENCE_SITE_NAME),root_path,:class=>"brand" %>
-      <ul class="nav">
-        <li class="active"><%= link_to "网站主页",root_path %></li>
-        <% if can? :dashboard,Preference %>
-          <li><%= link_to "控制面板",dashboard_preferences_path,:id => "dashboard" %></li>
-        <% end %>
-      </ul>
+      <%= link_to root_path,:class=>"brand" do %>
+        <%= image_tag @site.icon.url(:small),:class => "site_logo" %>
+        <%= @site.name %>
+      <% end %>
       <% if user_signed_in? %>
         <ul class="nav pull-right">
           <li id="inbox"><%= link_to message_span_tag(current_user.messages.where(:readed => false).count),inbox_users_path,"data-original-title"=>"站内消息","data-placement"=>"bottom",:rel=>"tooltip"%></li>

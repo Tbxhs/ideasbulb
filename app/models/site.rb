@@ -5,5 +5,5 @@ class Site < ActiveRecord::Base
   has_many :topics
   has_many :ideas
 
-  has_attached_file :icon, :styles => { :medium => "120x120#", :small => "50x50#"},:url => "/system/:attachment/:id/:style/:filename",:whiny => false
+  has_attached_file :icon, :styles => { :medium => "120x120#", :small => "50x50#"}
 end

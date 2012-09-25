@@ -33,4 +33,7 @@ Ideasbulb::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Default Config for Paperclip
+  config.paperclip_defaults = {:storage => :filesystem, :path => "/Users/danjiang/Sites/:class/:attachment/:id/:style/:filename",:url => "http://localhost/~danjiang/:class/:attachment/:id/:style/:filename",:default_url => "http://localhost/~danjiang/:class/:attachment/:style/missing.png",:whiny => false}
 end

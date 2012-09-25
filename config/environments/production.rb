@@ -71,4 +71,7 @@ Ideasbulb::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Default Config for Paperclip
+  config.paperclip_defaults = {:storage => :filesystem, :path => "#{APP_CONFIG['image_dir_path']}/:class/:attachment/:id/:style/:filename",:url => "#{APP_CONFIG['image_host_url']}/:class/:attachment/:id/:style/:filename",:default_url => "#{APP_CONFIG['image_host_url']}/:class/:attachment/:style/missing.png",:whiny => false}
 end
