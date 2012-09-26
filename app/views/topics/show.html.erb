@@ -1,4 +1,4 @@
-<% title "话题 - #{@topic.name} - #{Preference.option(PREFERENCE_SITE_NAME)}" %>
+<% title "话题 - #{@topic.name} - #{@site.name}" %>
 <div class="row head-title">
   <div class="span2">
     <%= image_tag @topic.logo.url(:medium),:class=>"profile_picture_medium" %>

@@ -1,8 +1,0 @@
-<tr>
-  <td><%= topic.name %></td>
-  <td><%= topic.ideas.count %></td>
-  <td>
-    <%= link_to "修改",edit_topic_path(topic),:class => "btn btn-small btn-primary"%>
-    <%= link_to "删除",topic,:method => :delete,:remote => true,:confirm => "确定永久删除？",:class => "btn btn-small btn-danger",:id => "del-topic-#{topic.id}"%>
-  </td>
-</tr>

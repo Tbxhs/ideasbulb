@@ -84,7 +84,7 @@ class IdeasController < ApplicationController
   end
 
   def tab
-    conditions = {}
+    conditions = {:site_id => @site.id}
     conditions[:status] = params[:status] if params[:status] 
     conditions[:topic_id] = params[:topic_id] if params[:topic_id]
     conditions[:user_id] = params[:user_id] if params[:user_id]
