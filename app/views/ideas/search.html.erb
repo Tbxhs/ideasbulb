@@ -3,7 +3,7 @@
   <%=text_field_tag :q,@idea_query,:class=> "input-xlarge search-query",:placeholder => '搜索主意...' %>
   <%= button_tag "搜索",:class=>"btn",:name => nil %>
 <% end %>
-<% if @ideas %>
+<% if @ideas.empty? %>
   <div id="search-ideas">
     <% @ideas.each do |idea| %>
 	  <div>

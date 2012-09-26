@@ -69,6 +69,13 @@ namespace :deploy do
 
 end
 
+namespace :sunspot do
+  desc "Reindex solr search index"
+  task :reindex, :roles => :app do
+    run "cd #{current_path} && #{rake} RAILS_ENV=#{rails_env} sunspot:reindex"
+  end
+end
+
 # Following tasks will be triggered after cap deploy:setup
 # $ cap deploy:setup -S skip_setup_shared=true
 after "deploy:setup", "deploy:setup_shared" unless fetch(:skip_setup_shared, false)
