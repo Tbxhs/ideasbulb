@@ -50,7 +50,7 @@
             <%= f.text_field :tag_names, :class => "input-xlarge" %>
             <span class="help-inline">空格间隔，最多3个</span>
             <ul class="unstyled home-tags">
-              <% Tag.random(Tag.count>10?10:Tag.count).each do |tag| %>
+              <% @tags.each do |tag| %>
 	            <li><a href="javascript:;" class="btn btn-mini btn-info btn-tag"><%= tag.name %></a></li>
               <% end %>
             </ul>
@@ -59,7 +59,7 @@
 	    <div class="control-group">
 	      <%= f.label :topic,:class=>"control-label" %>
 	      <div class="controls">
-            <%= collection_select(:idea, :topic_id, Topic.all, :id, :name) %>
+            <%= collection_select(:idea, :topic_id, @topics, :id, :name) %>
           </div>
         </div>
 	    <div class="form-actions">

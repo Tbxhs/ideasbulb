@@ -1,9 +1,9 @@
 class Tag < ActiveRecord::Base
   has_and_belongs_to_many :ideas
 
-  def self.with_names(names)
+  def self.with_names_and_site(names,site)
     names.map do |name|
-      Tag.find_or_create_by_name(name)
+      Tag.find_or_create_by_name_and_site_id(name,site.id)
     end
   end
 

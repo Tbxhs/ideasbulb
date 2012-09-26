@@ -3,7 +3,7 @@ class IdeasController < ApplicationController
 
   def index
     @topics = @site.topics
-    @tags = Tag.where("ideas_count>0").order("ideas_count desc") 
+    @tags = @site.tags.where("ideas_count>0").order("ideas_count desc") 
   end
 
   def search
@@ -40,11 +40,16 @@ class IdeasController < ApplicationController
 
   def new
     @idea = Idea.new
+    @tags = @site.tags.random(@site.tags.count>10 ? 10 : @site.tags.count)
+    @topics = @site.topics
   end
 
   def create
+    tag_names = params[:idea][:tag_names]
     @idea = current_user.ideas.build(params[:idea])
-    @idea.status = IDEA_STATUS_UNDER_REVIEW 
+    @idea.site = @site
+    @idea.status = IDEA_STATUS_UNDER_REVIEW
+    @idea.tag_names = tag_names 
     if @idea.save
       redirect_to @idea
     else

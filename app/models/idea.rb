@@ -8,6 +8,7 @@ class Idea < ActiveRecord::Base
   has_many :favors
   has_many :comments,:order => "created_at desc"
   has_many :solutions,:order => "pick desc,points desc,created_at desc"
+  belongs_to :site
 
   self.per_page = 30
 
@@ -19,6 +20,7 @@ class Idea < ActiveRecord::Base
   validates :topic_id,:presence=>true
   validates :user_id,:presence=>true
   validate :tags_valid_format,:tags_number_not_greater_than_three
+  validates :site_id,:presence=>true
 
   after_create do |idea|
     User.update_points(idea.user_id,USER_NEW_IDEA_POINTS)
@@ -45,10 +47,12 @@ class Idea < ActiveRecord::Base
   end
 
   def tag_names=(names)
-    self.tmp_tag_ids = self.tags.collect{|tag| tag.id}
-    self.tags = Tag.with_names(names.strip.split(/\s+/))
-    self.tags.each do |tag|
-      self.tmp_tag_ids << tag.id unless self.tmp_tag_ids.include?(tag.id)
+    if self.site
+      self.tmp_tag_ids = self.tags.collect{|tag| tag.id}
+      self.tags = Tag.with_names_and_site(names.strip.split(/\s+/),self.site)
+      self.tags.each do |tag|
+        self.tmp_tag_ids << tag.id unless self.tmp_tag_ids.include?(tag.id)
+      end
     end
   end
 

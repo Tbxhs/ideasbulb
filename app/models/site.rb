@@ -4,6 +4,7 @@ class Site < ActiveRecord::Base
   has_many :admins
   has_many :topics
   has_many :ideas
+  has_many :tags
 
   has_attached_file :icon, :styles => { :medium => "120x120#", :small => "50x50#"}
 end
