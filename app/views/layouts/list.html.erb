@@ -19,7 +19,7 @@
         <div class="span3">
           <%= form_tag(search_ideas_path,:method => "get",:class=>"form-search") do %>
 			<%=text_field_tag(:q,nil,:placeholder => "搜索主意",:class=> "span2 search-query",:title => "搜索主意") %>
-            <%= button_tag :class=>"btn" do %>
+            <%= button_tag :class=>"btn",:name => nil do %>
               <i class="icon-search"></i>
             <% end %>
 		  <% end %>

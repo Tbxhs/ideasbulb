@@ -1,10 +1,14 @@
-<%= render :partial => "common/search_form",:locals => {:which_tab => "idea-search-tab" } %>
+<% title "站内搜索主意 - #{@site.name}" %>
+<%= form_tag(search_ideas_path,:method => "get",:class=>"form-search well",:style=>"text-align:center") do %>
+  <%=text_field_tag :q,@idea_query,:class=> "input-xlarge search-query",:placeholder => '搜索主意...' %>
+  <%= button_tag "搜索",:class=>"btn",:name => nil %>
+<% end %>
 <% if @ideas %>
   <div id="search-ideas">
     <% @ideas.each do |idea| %>
 	  <div>
 		<div class="seperator"></div>
-		<div class="idea-title"><%= link_to idea.title,idea,:title=>idea.title%></div>
+		<div class="idea-title"><%= link_to idea.title,idea_path("#{idea.id}-#{idea.title}"),:title=>idea.title%></div>
 		<div class="idea-label">
           <%= status_span_tag idea %>
           <span><i class="icon-comment"></i>&nbsp;<%= idea.topic.name %></span>

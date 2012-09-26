@@ -43,7 +43,8 @@ class Idea < ActiveRecord::Base
   end 
 
   searchable do
-   text :title,:description
+    text :title,:description
+    integer :site_id
   end
 
   def tag_names=(names)
