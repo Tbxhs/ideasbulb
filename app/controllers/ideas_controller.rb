@@ -8,17 +8,15 @@ class IdeasController < ApplicationController
 
   def search
     params[:q] = params[:q].gsub(SEARCH_SOLR_FILTER,'')
-    @ideas = nil
     site_id = @site.id
     if !params[:q].empty?
-      search = Idea.search do
+      @search = Idea.search do
         fulltext params[:q] do
           boost_fields :title => 2.0,:description => 1.0
         end
         with :site_id, site_id
         paginate :page => params[:page],:per_page => Idea.per_page 
       end
-      @ideas = search.results
     end
     @idea_query = params[:q]
     render :layout => "list"

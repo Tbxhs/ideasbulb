@@ -3,9 +3,9 @@
   <%=text_field_tag :q,@idea_query,:class=> "input-xlarge search-query",:placeholder => '搜索主意...' %>
   <%= button_tag "搜索",:class=>"btn",:name => nil %>
 <% end %>
-<% if @ideas.empty? %>
+<% if @search && @search.total > 0 %>
   <div id="search-ideas">
-    <% @ideas.each do |idea| %>
+    <% @search.results.each do |idea| %>
 	  <div>
 		<div class="seperator"></div>
 		<div class="idea-title"><%= link_to idea.title,idea_path("#{idea.id}-#{idea.title}"),:title=>idea.title%></div>
