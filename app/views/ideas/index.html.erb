@@ -1,4 +1,4 @@
-<% title "主页 - #{Preference.option(PREFERENCE_SITE_NAME)}" %>
+<% title "主页 - #{@site.name}" %>
 <%= flash_msg_tag flash[:alert],"alert-error" %>
 <%= flash_msg_tag flash[:notice],"alert-success" %>
 <% @topics.each do |topic| %>
