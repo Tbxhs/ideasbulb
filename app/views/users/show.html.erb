@@ -1,4 +1,4 @@
-<% title "用户 - #{@user.username} - #{Preference.option(PREFERENCE_SITE_NAME)}" %>
+<% title "用户 - #{@user.username} - #{@site.name}" %>
 <div class="row head-title">
   <div class="span2">
     <%=  image_tag(@user.avatar.url(:medium),:class=>"profile_picture_medium") %>
@@ -7,7 +7,7 @@
     <h1><%= @user.username %></h1>
     <ul class="unstyled user-info">
       <li><span class="label label-info"><%= role_tag @user %></span></li>
-      <li><span class="label label-success"><%= @user.points %>个积分</span> <span class="label label-success">发布<%= @user.ideas.count %>个主意</span> <span class="label label-success">关注<%= @user.favored_ideas.count %>个主意</span> <span class="label label-success">发布<%= @user.solutions.count %>个解决方案</span> <span class="label label-success">发布<%= @user.comments.count %>个评论</span></li>
+      <li><span class="label label-success">发布<%= @ideas_count %>个主意</span> <span class="label label-success">关注<%= @ideas_favored_count %>个主意</span> <span class="label label-success"></li>
       <% if @user.website %><li><%= link_to @user.website,@user.website %></li><% end %>
       <li class="shallow"><%= @user.description %></li>
   </ul>
@@ -25,7 +25,7 @@
   </div>
 </div>
 <div id="ideas-main">
-  <% if @ideas.empty? %>
+  <% if @ideas_count < 0 %>
     <p style="text-align:center">抱歉，没有结果。</p>
   <% else %>
     <%= render @ideas %>

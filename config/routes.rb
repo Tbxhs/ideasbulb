@@ -17,11 +17,7 @@ Ideasbulb::Application.routes.draw do
       put 'unpick',:on => :member
     end
   end
-  resources :users do
-    put 'authority',:on => :member
-    get 'inbox',:on => :collection
-    match 'search',:on => :collection
-  end
+  resources :users
   resources :preferences do
     get 'dashboard',:on => :collection
     put 'update_basic',:on => :collection

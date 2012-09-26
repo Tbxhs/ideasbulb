@@ -12,9 +12,7 @@ radio_button_tag("admin_radio#{user.id}",user.id,!user.admin,:id=>"admin_radio#{
   end
 
   def role_tag(user)
-    if user.owner
-      t('activerecord.attributes.user.owner')
-    elsif user.admin
+    if user.admin
       t('activerecord.attributes.user.admin')
     else
       t('activerecord.attributes.user.normal')
