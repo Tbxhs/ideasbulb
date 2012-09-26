@@ -25,7 +25,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-		  <td><%= link_to user.username,user_path(user.username) %></td>
+		  <td><%= link_to user.username,user_path("#{user.id}-#{user.username}") %></td>
 		  <td><%= user.email %></td>
 		  <td><%= admin_radio_tag user %></td>
 		  <td><%= l user.created_at.to_date,:format => :long %></td>

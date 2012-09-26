@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   layout "admin"
 
   def show
-    @topic = Topic.find_by_name!(params[:id])
+    @topic = Topic.find(params[:id])
     @ideas = @topic.ideas.paginate(:page => params[:page]).includes(:tags,:user,:topic,:comments,:solutions).where("status = ?",IDEA_STATUS_REVIEWED_SUCCESS).order(hot_sort)
     render :layout => "list"
   end

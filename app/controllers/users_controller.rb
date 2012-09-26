@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_username(params[:id])
+    @user = User.find(params[:id])
     @ideas = @user.ideas.paginate(:page => params[:page]).includes(:tags,:user,:topic,:comments,:solutions).order(hot_sort)
     render :layout => "list"
   end
