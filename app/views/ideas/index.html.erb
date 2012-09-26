@@ -12,7 +12,7 @@
 		  <h2><%= I18n.t("app.idea.status.#{status}") %></h2>
           <% if idea %>
 		    <div class="home-user"><%= link_to image_tag(idea.user.avatar.url(:small),:class=>"profile_picture"),user_path(idea.user.username) %><%= link_to idea.user.username,user_path(idea.user.username),:class=>"home-user-name" %></div>
-		    <div class="home-idea-title"><%= link_to idea.title,idea,:title => idea.title %></div>
+		    <div class="home-idea-title"><%= link_to idea.title,idea_path("#{idea.id}-#{idea.title}"),:title => idea.title %></div>
 		    <div class="home-idea-entry"><%= auto_link(idea.description) %></div>
           <% else %>
             <p><span class="label label-warning">还有没有主意！</span></p>

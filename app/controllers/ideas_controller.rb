@@ -33,7 +33,7 @@ class IdeasController < ApplicationController
   end
   
   def show
-    @idea = Idea.includes(:tags,:user,:topic,:comments,:solutions,:favorers).find(params[:id])
+    @idea = @site.ideas.includes(:tags,:user,:topic,:comments,:solutions,:favorers).find(params[:id])
     @idea_page = true
     render :layout => "list"
   end
