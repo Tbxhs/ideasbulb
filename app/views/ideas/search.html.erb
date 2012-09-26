@@ -1,5 +1,5 @@
 <%= render :partial => "common/search_form",:locals => {:which_tab => "idea-search-tab" } %>
-<% if @ideas %>
+<% if @ideas && !@ideas.empty? %>
   <div id="search-ideas">
     <% @ideas.each do |idea| %>
 	  <div>

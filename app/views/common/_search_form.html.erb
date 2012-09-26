@@ -8,13 +8,13 @@
     <%= element_active_tag :div,"idea-search-tab",which_tab,{:class=>"tab-pane",:id=>"idea-search-tab"} do %>
       <%= form_tag(search_ideas_path,:method => "get",:class=>"form-search well",:style=>"text-align:center") do %>
         <%=text_field_tag :q,@idea_query,:class=> "input-xlarge search-query",:placeholder => '搜索主意...' %>
-        <%= button_tag "搜索",:class=>"btn" %>
+        <%= button_tag "搜索",:class=>"btn",:name=>nil %>
       <% end %>
     <% end %>
     <%= element_active_tag :div,"user-search-tab",which_tab,{:class=>"tab-pane",:id=>"user-search-tab"} do %>
       <%= form_tag(search_users_path,:method => "get",:class=>"form-search well",:style=>"text-align:center") do %>
         <%=text_field_tag :q,@user_query,:class=> "input-xlarge search-query",:placeholder => '搜索用户...' %>
-        <%= button_tag "搜索",:class=>"btn" %>
+        <%= button_tag "搜索",:class=>"btn",:name=>nil %>
       <% end %>
     <% end %>
   </div>
