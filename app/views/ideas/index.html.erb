@@ -36,7 +36,7 @@
     </div>
     <ul class="unstyled home-tags">
       <% @tags.each do |tag| %>
-	    <li><i class="icon-tag"></i>&nbsp;<%= link_to tag.name,tag_path(tag.name) %><span class="shallow">&nbsp;x&nbsp;<%= tag.ideas_count %></span></li>
+	    <li><i class="icon-tag"></i>&nbsp;<%= link_to tag.name,tag_path("#{tag.id}-#{tag.name}") %><span class="shallow">&nbsp;x&nbsp;<%= tag.ideas_count %></span></li>
       <% end %>
     </ul>
   </section>
