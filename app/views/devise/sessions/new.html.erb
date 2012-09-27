@@ -1,19 +1,38 @@
-<% title "登录- #{Preference.option(PREFERENCE_SITE_NAME)}" %>
+<% title "登录- #{@site.name}" %>
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span8 offset2">
     <%= flash_msg_tag flash[:alert],"alert-error" %>
     <%= flash_msg_tag flash[:notice],"alert-success" %>
-	<h2>登录</h2>
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html=>{:class=>"well"}) do |f| %>
-      <%= f.label :login %>
-      <%= f.text_field :login,:class=>"span4"%>
-	  <%= f.label :password %>
-      <%= f.password_field :password,:class=>"span4" %>
-	  <label class="checkbox">
-		<%= f.check_box :remember_me %> <%= f.label :remember_me %>
-	  </label>
-      <%= f.submit "登录",:class=>"btn btn-large btn-primary" %>
-    <% end -%>
-    <%= render "links" %>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html=>{:class=>"form-horizontal"}) do |f| %>
+      <fieldset>
+	    <legend>登录</legend>
+	    <div class="control-group">
+	      <%= f.label :login,:class=>"control-label" %>
+	      <div class="controls">
+		    <div class="input-prepend">
+			  <span class="add-on"><i class="icon-user"></i></span><%= f.text_field :login,:class=>"span3" %>
+		    </div>
+		  </div>
+	    </div>
+	    <div class="control-group">
+          <%= f.label :password,:class=>"control-label" %>
+		  <div class="controls">
+		    <div class="input-prepend">
+			  <span class="add-on"><i class="icon-lock"></i></span><%= f.password_field :password,:class=>"span3" %>
+		    </div>
+		    <p class="help-inline"><%= link_to "忘记密码？", 'http://www.ideasbulb.com/users/password/new' %></p>
+		  </div>
+	    </div>
+	    <div class="control-group">
+		  <div class="controls">
+              <label class="checkbox">
+		        <%= f.check_box :remember_me %> 记住我
+              </label>
+		  </div>
+	    </div>
+	    <div class="form-actions">
+            <%= f.submit "登录",:class=>"btn btn-large btn-primary",:disable_with => "登录中..." %> 
+	    </div>
+    <% end %>
   </div>
 </div>

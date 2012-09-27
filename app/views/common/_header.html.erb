@@ -7,12 +7,11 @@
       <% end %>
       <% if user_signed_in? %>
         <ul class="nav pull-right">
-          <li id="inbox"><%= link_to message_span_tag(current_user.messages.where(:readed => false).count),'#',"data-original-title"=>"站内消息","data-placement"=>"bottom",:rel=>"tooltip"%></li>
+          <li id="inbox"><%= link_to message_span_tag(current_user.messages.where(:readed => false).count),'http://www.ideasbulb.com/users/inbox',"data-original-title"=>"站内消息","data-placement"=>"bottom",:rel=>"tooltip"%></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %><b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><%=link_to '修改个人资料',edit_user_path(current_user) %></li>
-              <li><%=link_to '修改邮箱或密码',edit_user_registration_path %></li>
+              <li><%=link_to '用户中心','http://www.ideasbulb.com/users/welcome' %></li>
               <li class="divider"></li>
               <li><%= link_to "注销",destroy_user_session_path,:method => :delete %></li>
             </ul>
@@ -24,7 +23,7 @@
       <% else %>
         <ul class="nav pull-right">
           <li><%= link_to "登录", new_session_path(User) %></li>
-          <li><%= link_to "注册", new_registration_path(User) %></li>
+          <li><%= link_to "注册", 'http://www.ideasbulb.com/users/sign_up' %></li>
         </ul>
         <div class="btn-group pull-right">
           <a href="javascript:;" data-toggle="modal" data-target="#modal-login" class="btn btn-warning"><i class="icon-bullhorn icon-white"></i>&nbsp;发布新主意</a>
@@ -49,7 +48,7 @@
 	    <%= f.label :password %>
         <%= f.password_field :password,:class=>"span4" %>
         <p class="help-block">
-          <%= link_to  new_registration_path(User) do %>
+          <%= link_to  'http://www.ideasbulb.com/users/sign_up' do %>
             还没有账号？<span class="highlight">欢迎注册</span>
           <% end %>
         </p>

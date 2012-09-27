@@ -69,10 +69,6 @@ showIndicator = (target) ->
  $(target).empty().append("<div class='indicator'></div>")
 
 active = (target) -> $(target).parent().addClass("active").siblings().removeClass("active")
-activeIcon = (target) ->
- li = $(target).parent().addClass("active")
- li.siblings().removeClass("active").find("i").removeClass("icon-white")
- li.find("i").addClass("icon-white")
 
 getActiveLinkParam = (id) ->
  url=$(id).children(".active").find("a").attr("href")
@@ -135,30 +131,10 @@ appendTag = (target,source) ->
  input=$(target)
  input.val(input.val()+" "+tag)
 
-toggleMessageCheckbox = (target,check) ->
- if check
-  $(target).find(':checkbox').attr('checked','checked')
- else
-  $(target).find(':checkbox').removeAttr('checked')
-
-operateMessages = (target,source) ->
- checkeds = $(target).find('input:checked')
- vals = ""
- if checkeds.length > 0
-  vals+=","+checked.value for checked in checkeds
-  vals=vals.substring(1)
-  form = $(source)
-  form.find("#message_ids").val(vals)
-  form.submit()
-
 jQuery ($) ->
  initIdeas() if $('#ideas-main').length > 0
  initIdea() if $('#idea-main').length > 0
  $('#idea-title-promotion').autocomplete({serviceUrl:'/ideas/promotion',width:400,onSelect :(value, data) -> location.href="/ideas/"+data })
  $('a.btn-tag').click -> appendTag("#idea_tag_names",this)
  $('#inbox').tooltip selector: "a[rel=tooltip]"
- $('#message-check-all').click -> toggleMessageCheckbox('#messages-table',true)
- $('#message-uncheck-all').click -> toggleMessageCheckbox('#messages-table',false)
- $('#message-mark-read').click -> operateMessages('#messages-table','#message-mark-read-form')
- $('#message-delete').click -> operateMessages('#messages-table','#message-delete-form')
  $('.dropdown-toggle').dropdown()

@@ -4,8 +4,8 @@ module IdeasHelper
     content_tag :span,I18n.t("app.idea.status.#{idea.status}"),:class => "bold"
   end
 
-  def handle_idea_button(idea)
-    if (can? :handle,idea) && idea.status != IDEA_STATUS_LAUNCHED
+  def handle_idea_button(idea,site)
+    if (can? :handle,idea) && site.site_admins.exists?(current_user) && idea.status != IDEA_STATUS_LAUNCHED
       case idea.status
       when IDEA_STATUS_UNDER_REVIEW
         button = link_to(I18n.t("app.idea.handle.#{idea.status}"),handle_idea_path(idea,:status => IDEA_STATUS_REVIEWED_SUCCESS),:class => "btn btn-warning btn-large",:method => :put)

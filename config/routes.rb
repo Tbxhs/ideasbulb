@@ -18,14 +18,6 @@ Ideasbulb::Application.routes.draw do
     end
   end
   resources :users
-  resources :preferences do
-    get 'dashboard',:on => :collection
-    put 'update_basic',:on => :collection
-  end
   resources :votes
-  resources :messages do
-    put 'update_multiple',:on => :collection
-    delete 'delete_multiple',:on => :collection
-  end
   resources :tags
 end

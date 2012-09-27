@@ -17,18 +17,6 @@ module ApplicationHelper
     end
   end
 
-  def element_active_tag(element,expectation,actual,options={},&block)
-    cssClass ="active "
-    cssClass += options[:class] if options[:class]
-    options = options.merge(:class => cssClass) if expectation == actual
-    content_tag(element,options,&block) 
-  end
-
-  def icon_white_tag(expectation,actual,cssClass)
-    cssClass = cssClass + " icon-white" if expectation == actual
-    content_tag(:i,"",:class => cssClass)
-  end
-
   def title(page_title)
     content_for :title, page_title.to_s
   end

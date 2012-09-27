@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926011914) do
+ActiveRecord::Schema.define(:version => 20120926103802) do
 
   create_table "admins", :force => true do |t|
     t.integer  "user_id"
@@ -80,13 +80,6 @@ ActiveRecord::Schema.define(:version => 20120926011914) do
     t.datetime "updated_at"
     t.string   "link"
     t.boolean  "readed",     :default => false
-  end
-
-  create_table "preferences", :force => true do |t|
-    t.string   "name"
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "sites", :force => true do |t|

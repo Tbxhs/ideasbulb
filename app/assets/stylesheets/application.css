@@ -26,9 +26,6 @@ body {
 .navbar .brand{
   padding:5px 20px;
 }
-.sidebar-nav {
- padding: 9px 0;
-}
 .footer-nav{
 	text-align: center;
 	margin: 20px 0;
@@ -159,11 +156,6 @@ p.more-ideas{
  border-top:1px dashed #EEE;
  text-align:right;
 }
-a.message{
- display:block;
- text-decoration: none;
- padding:5px;
-}
 .autocomplete-w1 { background:url(shadow.png) no-repeat bottom right; position:absolute; top:0px; left:0px; margin:8px 0 0 6px; /* IE6 fix: */ _background:none; _margin:0; }
 .autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
 .autocomplete .selected { background:#F0F0F0; }
@@ -187,12 +179,7 @@ a.message{
 .section-topic{
  margin-bottom:50px;
 }
-ul.home-tags{
-}
 ul.home-tags li{
  display:inline-block;
  margin:10px 5px;
-}
-td.checkbox{
- width:18px;
 }

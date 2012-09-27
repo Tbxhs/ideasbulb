@@ -8,7 +8,6 @@ Ideasbulb::Application.initialize!
 IDEA_STATUS_UNDER_REVIEW = 'under_review'
 IDEA_STATUS_REVIEWED_SUCCESS = 'reviewed_success'
 IDEA_STATUS_LAUNCHED = 'launched'
-PREFERENCE_SITE_NAME = 'site_name'
 USER_NEW_IDEA_POINTS = 3
 USER_NEW_SOLUTION_POINTS = 2
 USER_NEW_COMMENT_POINTS = 1

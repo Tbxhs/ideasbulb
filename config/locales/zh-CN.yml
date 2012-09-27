@@ -21,22 +21,10 @@ zh-CN:
         topic_id: "所属话题"
         user_id: "创建者"
       user:
-        username: "用户名"
         password: "密码"
-        password_confirmation: "确认密码"
-        current_password: "当前密码"
-        email: "电子邮箱"
-        remember_me: "记住我"
-        login: "用户名或电子邮件地址"
-        description: "自我介绍"
-        website: "个人主页"
-        owner: "网站持有者"
+        login: "用户名或邮箱"
         admin: "管理员"
         normal: "注册用户"
-        avatar_file_size: "头像大小"
-        avatar_content_type: "头像格式"
-        confirmation_token: "确认帐号的认证码"
-        reset_password_token: "重置密码的认证码"
       comment:
         content: "评论"
         user_id: "创建者"
@@ -46,12 +34,6 @@ zh-CN:
         content: "描述"
         user_id: "创建者"
         idea_id: "所属主意"
-      topic:
-        name: "话题名称"
-        website: "主页"
-        description: "介绍"
-        logo_file_size: "Logo大小"
-        logo_content_type: "Logo格式"
       vote:
         user_id: "投票者"
         solution_id: "所属方案"
@@ -66,15 +48,6 @@ zh-CN:
       content_tip: "不支持HTML，链接以 http(s):// 开头的能够被识别"
     error:
       head: "请改正如下错误"
-      topic:
-        zero_ideas: "不能删除主意数量不为零的话题"
-        logo_file_size: "最大为50KB"
-        logo_content_type: "只能为JPEG和PNG"
-        name_format: "不能包含. /"
-      user:
-        username_format: "只能包含字母和数字"
-        avatar_file_size: "最大为50KB"
-        avatar_content_type: "只能为JPEG和PNG"
       idea:
         tags_number: "不能超过3个"
         status: "修改主意为 %{status} 失败"
@@ -88,17 +61,9 @@ zh-CN:
         destroy: "实施中或已实施的主意不能删除其建议"
       vote:
         voting: "只有审核通过的主意，才能给其解决方案投票"
-      preference:
-        update: "设置项 %{name} 的值不能为空"
     notice:
       user:
         edit: "修改成功"
-      preference:
-        update: "修改成功"
-    user:
-      admin:
-        radio_yes: "是"
-        radio_no: "否"
     idea:
       status:
         under_review: "新发布"
@@ -130,11 +95,6 @@ zh-CN:
       unpick:
         hover_in: "不选"
         hover_out: "已选"
-    preference:
-      site_name: "站点名称"
-    message:
-      readed: "（已读）"
-      unread: "（未读）"
   #for email
   message_mailer:
     make_solution_email:

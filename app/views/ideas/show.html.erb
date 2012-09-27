@@ -1,6 +1,6 @@
 <% title "主意 - #{@idea.title} - #{@site.name}" %>
 <%= flash_msg_tag flash[:alert],"alert-error" %>
-<%= handle_idea_button @idea %>
+<%= handle_idea_button @idea,@site %>
 <% if @idea.favorers.count > 0%>
   <h4><span class="plain"><%= @idea.favorers.count %></span> 人关注了此主意</h4>
   <ul class="unstyled favor-avatar">
