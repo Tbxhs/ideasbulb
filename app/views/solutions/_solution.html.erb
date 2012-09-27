@@ -14,7 +14,7 @@
       <%= vote_unvote_solution_link solution %>
       <%= edit_solution_link solution %>
       <%= del_solution_link solution %>
-      <% if (can? :pick,solution.idea) && solution.idea.status == IDEA_STATUS_REVIEWED_SUCCESS %>
+      <% if (can? :pick,solution) && @site.site_admins.exists?(current_user) && solution.idea.status == IDEA_STATUS_REVIEWED_SUCCESS %>
 	    <li style="margin:10px 0"><%= pick_unpick_link solution %></li>
       <% elsif solution.pick %>
 	    <li><a href="javascript:;" class="tip-link" data-original-title="被选中的方案" data-placement="right" ><%= image_tag "check.png"%></a></li>

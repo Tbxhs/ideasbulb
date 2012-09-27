@@ -9,7 +9,7 @@ class Ability
     if user
       can [:promotion,:create,:update,:favoriate,:unfavoriate,:handle], Idea
       can :manage, Comment
-      can [:create,:update,:destroy], Solution
+      can [:create,:update,:destroy,:pick], Solution
       can :manage, Vote
       can :manage, Message
     end
