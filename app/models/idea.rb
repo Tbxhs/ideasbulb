@@ -23,7 +23,6 @@ class Idea < ActiveRecord::Base
   validates :site_id,:presence=>true
 
   after_create do |idea|
-    User.update_points(idea.user_id,USER_NEW_IDEA_POINTS)
     Resque.enqueue(NewIdeaMessage, idea.id)
   end
   

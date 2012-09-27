@@ -8,11 +8,6 @@ Ideasbulb::Application.initialize!
 IDEA_STATUS_UNDER_REVIEW = 'under_review'
 IDEA_STATUS_REVIEWED_SUCCESS = 'reviewed_success'
 IDEA_STATUS_LAUNCHED = 'launched'
-USER_NEW_IDEA_POINTS = 3
-USER_NEW_SOLUTION_POINTS = 2
-USER_NEW_COMMENT_POINTS = 1
-USER_VOTE_POINTS = 1
-USER_SOLUTION_PICKED_POINTS = 5
 IDEAS_SORT_HOT = 'hot'
 IDEAS_SORT_NEWEST = 'new'
 SEARCH_SOLR_FILTER = /&&|\|\||[\+\-!\(\)\{\}\[\]\^"~\*\?:\\]/

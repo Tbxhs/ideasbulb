@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926103802) do
+ActiveRecord::Schema.define(:version => 20120927031156) do
 
   create_table "admins", :force => true do |t|
     t.integer  "user_id"
@@ -135,7 +135,6 @@ ActiveRecord::Schema.define(:version => 20120926103802) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                  :default => false
-    t.integer  "points",                 :default => 0
     t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

@@ -23,10 +23,6 @@ class Vote < ActiveRecord::Base
     Idea.update_solutions_points(vote.solution.idea_id)
   end
   
-  after_create do |vote|
-    User.update_points(vote.user_id,USER_VOTE_POINTS)
-  end
-
   private
   def check_status(status,error)
     if status != IDEA_STATUS_REVIEWED_SUCCESS

@@ -7,7 +7,6 @@ class Comment < ActiveRecord::Base
   validates :user_id,:presence=>true
 
   after_create do |comment|
-    User.update_points(comment.user_id,USER_NEW_COMMENT_POINTS)
     Resque.enqueue(CommentMessage, comment.id)
   end 
 
