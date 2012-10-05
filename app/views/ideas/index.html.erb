@@ -4,7 +4,7 @@
 <% @topics.each do |topic| %>
   <section class="section-topic">
     <div class="page-header">
-	  <h1><%= link_to image_tag(topic.logo.url(:small),:class=>"profile_picture"),topic_path(topic.name) %> <%= link_to topic.name,topic_path("#{topic.id}-#{topic.name}")%></h1>
+	  <h1><%= link_to image_tag(topic.logo.url(:small),:class=>"profile_picture"),topic_path("#{topic.id}-#{topic.name}") %> <%= link_to topic.name,topic_path("#{topic.id}-#{topic.name}")%></h1>
 	</div>
 	<div class="row">
       <% topic.status_ideas.each do |status,idea| %>

@@ -1,3 +1,7 @@
+h2. 开源版本的说明
+
+"www.ideasbulb.com":http://www.ideasbulb.com/ 上的IdeasBulb是基于此独立安装的开源版本开发的SaaS，为了满足软件即服务情况，功能上有很多不同，因为个人开发的时间有限，以后主要维护SaaS版本的IdeasBulb，SaaS版本的IdeasBulb处于不开源的情况。
+
 h2. IdeasBulb
 
 "IdeasBulb":http://www.ideasbulb.com/ 是为帮助您的公司和自己客户快速沟通交流的Web软件，客户通过IdeasBulb发布自己对公司产品和服务的想法和主意，提供主意的解决方案，评论主意，给方案投票，客户互相交流的同时，也同公司互动，公司可以发现客户的好主意和好建议，将其纳入自己产品和服务中，公司成长了，客户也满意了，双赢。
@@ -30,16 +34,16 @@ h2. 发布主意
 
 h2. 开发者指南
 
-如果你想贡献你的一份力量，请阅读 "开发者贡献指南":http://www.ideasbulb.com/developer.html
+如果你想贡献你的一份力量，请阅读 "开发者贡献指南":https://github.com/danjiang/ideasbulb/wiki/%E5%BC%80%E5%8F%91%E8%80%85%E6%8C%87%E5%8D%97
 
 h2. 安装指南
 
-详细产品安装指南，请阅读 "安装指南":http://www.ideasbulb.com/install.html
+详细产品安装指南，请阅读 "安装指南":https://github.com/danjiang/ideasbulb/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97
 
 h2. 作者
 
-但江(danjiang5956@gmail.com)
-"http://twitter.com/danthoughtcom":http://twitter.com/danthoughtcom
+Dan Jiang
+"danjiang5956@gmail.com":mailto:danjiang5956@gmail.com
 "http://www.danthought.com":http://www.danthought.com
 
 h2. 开源协议
